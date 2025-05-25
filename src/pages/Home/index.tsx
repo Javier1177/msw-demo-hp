@@ -12,7 +12,7 @@ export default function Home() {
       <h1 className={styles.title}></h1>
       <section className={styles.grid}>
         {artistList?.map((artist) => (
-          <article key={artist.name} className={styles.card}>
+          <article key={artist.id} className={styles.card}>
             <img
               src={artist.image}
               alt={artist.name}
