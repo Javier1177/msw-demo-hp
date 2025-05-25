@@ -61,16 +61,21 @@
   margin: 0;
 }
 
-.center {
+.center,
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #e0e0e0;
   text-align: center;
-  margin-top: 40px;
-  font-size: 1.25rem;
-  color: #333;
+  padding: 20px;
+  line-height: 1.4;
 }
 
 .error {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 1.25rem;
-  color: #c53030;
+  color: #ff6b6b;
 }
