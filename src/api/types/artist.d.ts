@@ -1,4 +1,4 @@
-export interface Artist {
+export interface ArtistInfo {
   id: string;
   name: string;
   image: string;
@@ -8,5 +8,5 @@ export interface Artist {
 }
 
 export interface ArtistListResponse {
-  artistList: Artist[];
+  artistList: ArtistInfo[];
 }
