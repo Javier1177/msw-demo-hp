@@ -1,7 +1,8 @@
 import type { ArtistInfo, ArtistListResponse } from './types/artist';
 import type { UserInfo } from './types/userAuth';
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+export const BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || window.location.origin;
 
 export const getArtistList = async (): Promise<ArtistListResponse> => {
   try {
@@ -12,6 +13,7 @@ export const getArtistList = async (): Promise<ArtistListResponse> => {
     }
 
     const data = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error('Error fetching artist list:', error);
