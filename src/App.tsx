@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import ArtistDetail from './pages/Details';
 import Auth from './pages/Auth';
@@ -8,6 +8,7 @@ const isAuthenticated = () => {
 };
 
 export default function App() {
+  const navigate = useNavigate();
   return (
     <Routes>
       <Route
@@ -26,10 +27,7 @@ export default function App() {
           )
         }
       />
-      <Route
-        path='/login'
-        element={<Auth onLogin={() => (window.location.href = '/')} />}
-      />
+      <Route path='/login' element={<Auth onLogin={() => navigate('/')} />} />
 
       <Route path='*' element={<div>404 - Página no encontrada</div>} />
     </Routes>

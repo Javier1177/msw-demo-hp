@@ -1,16 +1,22 @@
 import { useState } from 'react';
 import styles from './auth.module.css';
+import { usePostUserAuth } from '../../api/hooks/auth/usePostUserAuth';
 
 export default function Auth({ onLogin }: { onLogin: () => void }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { login, loading, error } = usePostUserAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (username && password) {
-      sessionStorage.setItem('user', JSON.stringify({ username }));
-      onLogin();
+      const response = await login({ username, password });
+      console.log(response);
+      if (response) {
+        sessionStorage.setItem('user', JSON.stringify({ username }));
+        onLogin();
+      }
     }
   };
 
@@ -34,8 +40,9 @@ export default function Auth({ onLogin }: { onLogin: () => void }) {
           className={styles.input}
           required
         />
-        <button type='submit' className={styles.button}>
-          Entrar
+        {error && <p className={styles.error}>{error}</p>}
+        <button type='submit' className={styles.button} disabled={loading}>
+          {loading ? 'Entrando...' : 'Entrar'}
         </button>
       </form>
     </main>
