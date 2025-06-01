@@ -18,7 +18,7 @@ export default function App() {
         }
       />
       <Route
-        path='/artist/:id'
+        path='/artist/:artistId'
         element={
           isAuthenticated() ? (
             <ArtistDetail />
